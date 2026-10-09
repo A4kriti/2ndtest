@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma";
 import { getStatus } from "@/lib/task-status";
+import TaskStatusChart from "@/components/chrts";
 
 export default async function Page() {
   const supabase = await createClient();
@@ -69,8 +70,8 @@ export default async function Page() {
       <h1 className="text-2xl font-semibold">
         {greeting}, {displayName}!
       </h1>
-      <p className="text-gray-500 mt-1">Yahoo successfully Login.
-        Okay Boss let explore, your profile.
+      <p className="text-gray-500 mt-1">
+        Yahoo successfully Login. Okay Boss let explore, your profile.
       </p>
 
       {/* Stats */}
@@ -96,6 +97,13 @@ export default async function Page() {
       {/* Projects + tasks list */}
       <div className="py-6">
         <h3 className="text-lg font-semibold mb-4">Your Projects</h3>
+
+        {/* NEW: chart of To do / Pending / Complete */}
+        <TaskStatusChart
+          todo={todoTasks}
+          pending={pendingTasks}
+          complete={completedTasks}
+        />
 
         {projects.length === 0 && <p className="text-gray-500">No projects yet.</p>}
 

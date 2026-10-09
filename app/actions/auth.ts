@@ -44,3 +44,12 @@ export async function signOut() {
   await supabase.auth.signOut();
   redirect("/login");
 }
+
+// NEW: returns the logged-in user from your database (has .name), or null
+export async function getCurrentUser() {
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getUser();
+  if (!data.user) return null;
+
+  return prisma.user.findUnique({ where: { id: data.user.id } });
+}
