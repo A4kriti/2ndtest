@@ -29,9 +29,7 @@ export default function PictureGrid() {
     <div className="p-8">
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-xl font-semibold text-gray-900">Pictures</h1>
-        <button className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">
-          Upload Picture
-        </button>
+        
       </div>
 
       {/* Bento grid */}
